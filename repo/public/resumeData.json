@@ -2,19 +2,20 @@
   "main": {
     "title": "Meet Jo Starkie",
     "name": "Jo Starkie",
-    "description": "I am a Software Engineer in the Microsoft Cloud for Industry and Global Expansion Team! Welcome to my site, I hope you enjoy your stay.",
+    "description": "I'm a Software Engineer II at Microsoft, building customer-facing features, APIs and SDKs for Dynamics 365 Contact Center",
     "image": "profilepic.jpg",
-    "bio": "I put my all into my projects in life and people can count on me to be fair and just, as I deliver on my promises. I jump at opportunities where I can combine my love for technology and innovation with my passion for inspiring the next generation with a career in S.T.E.M. I thoroughly enjoy mentoring others to help support and stretch their way of thinking. I hope to help others reach their potential and provide feedback in the process to ensure I'm helping the mentee achieve their goals. My personality type is INFP-T (if you're interested)!",
+    "imageWebp": "profilepic.webp",
+    "bio": "I'm a Software Engineer II at Microsoft working on Dynamics 365 Contact Center, with experience across TypeScript, C#, Azure, APIs and SDK development. Previously a Cloud Solution Architect, I bring both engineering and customer-facing experience to product development. I build customer-facing features and APIs, contribute to shared components, and investigate production issues using telemetry and debugging. I actively mentor early-career Cloud Solution Architects and aspiring Software Engineers, co-founded UnlockHerTech (shortlisted for the WIT Summit Awards 2023), and contribute to Women & Allies, Code Club, career mentoring and STEM outreach. My personality type is INFJ-T (if you're interested)!",
     "contactmessage": "Feel free to reach out via any of my social medias below, I'll be more than happy to chat and help where I can. I'd love to hear from you.",
     "email": "youremailhere@gmail.com",
     "github": "https://github.com/JWStarkie",
     "linkedin": "https://www.linkedin.com/in/jostarkie",
     "address": {
-      "city": "London",
+      "city": "Bedford",
       "state": "United Kingdom"
     },
     "website": "https://thestarkie.com",
-    "cvDownload": "https://drive.google.com/file/d/1-sz7nmncJP4M3_qQmaJFR2jXRLdejpPb/view",
+    "cvDownload": "https://drive.google.com/file/d/1hZJOoMhNmd8ubFDTUSsaw3yrMZRBXmvP/view",
     "social": [
       {
         "name": "twitter",
@@ -39,27 +40,33 @@
     ]
   },
   "resume": {
-    "skillmessage": "Here's a quick breakdown of some of the languages I've worked with. Please feel free to check out my GitHub page to see more.",
+    "skillmessage": "My development experience spans C#, TypeScript, JavaScript, React, Node.js, SQL, PowerShell and Bicep. I work with Azure, Dynamics 365, Azure Data Factory, Azure Functions, AKS, Microsoft Fabric, Dataverse, Power Platform and Microsoft Purview. My engineering focus includes API and SDK development, automated testing, CI/CD, infrastructure as code, observability and event-driven systems, using Azure DevOps, Git, GitHub, TypeSpec/OpenAPI and VS Code. Selected skills are highlighted below; see my GitHub for examples of my work.",
     "education": [
       {
         "school": "Brunel University London",
-        "degree": "BSc in Computer Science with (Artificial Intelligence)",
+        "degree": "BSc (Hons) Computer Science (Artificial Intelligence) with Professional Practice",
         "graduated": "July 2020",
-        "description": "Awarded Undergraduate Academic Excellence Scholarship for 4 years – Received the Computer Science Department Award for achieving the highest GPA in the cohort... Modules include Algorithms and their Applications, Cyber Security, Data and Information, Logic and Computation, Software Development and Management, Software Engineering, Usability Engineering"
+        "description": "First Class Honours. Received the Computer Science Department Award for the highest GPA in the cohort and the Undergraduate Academic Excellence Scholarship for four years. Certifications earned: Power BI Data Analyst Associate (DA-100), Azure Data Fundamentals (DP-900), Azure AI Fundamentals (AI-900), and GitHub Foundations."
       }
     ],
     "work": [
       {
         "company": "Microsoft",
-        "title": "Software Engineer",
-        "years": "January 2022 - Present",
-        "description": "• I'm currently working in the Industry ISV Engineering and Architecture team. More information to come, watch this space ... "
+        "title": "Software Engineer II",
+        "years": "November 2023 - Present",
+        "description": "Dynamics 365 Contact Center | Voice Channel & Headless CSR SDK. • Develop customer-facing features across voice, messaging and the Headless Customer Service Representative SDK, working primarily with TypeScript and Microsoft's Contact Center platform. • Contribute to the CSR TypeScript SDK, enabling enterprise customers to build their own representative experiences; delivered APIs and capabilities covering conversations, presence, disposition codes, messaging and administration. • Owned end-to-end delivery of Adaptive Card and rich-message support, enabling applications to retrieve and send rich content and handle customer responses; designed conversation-state handling and demonstrated the completed feature to the engineering team. • Improved public API design and consistency through pagination, API types and usage patterns, validating changes against the sample application from a consumer's perspective. • Redesigned dialpad validation across the main and embedded Contact Center experiences, replacing duplicated validation with a shared implementation for agents and supervisors with voice access; delivered and monitored the change behind a feature flag for controlled rollout. • Own customer and production investigations across calling, recording, transcription, workstreams and third-party integrations, using telemetry, code tracing and reproduction environments to identify defects and coordinate fixes. • Add automated test coverage, improve SDK tooling and sample applications, review team changes, and maintain onboarding and technical documentation."
       },
       {
-        "company": "Microsoft UK",
-        "title": "Data & Analytics Cloud Solution Architect",
+        "company": "Microsoft",
+        "title": "Software Engineer",
+        "years": "January 2022 - November 2023",
+        "description": "Dynamics 365 | Retail & Data Platforms. • Developed features and services across Dynamics 365 and Microsoft's retail products using C#, Azure, React/TypeScript and data services. • Helped take the ISV Data Connector for Smart Store Analytics from private preview to general availability, working with Azure Data Factory on pipelines, validation, deployment and integration issues alongside the ADF product team. • Built and improved backend retail data services, including event handling to prevent duplicate processing; refactored C# services and expanded automated test coverage. • Developed APIs and deployment tooling for partner integrations, including OpenAPI/TypeSpec definitions, automated security checks and configuration of services running in Azure Kubernetes Service. • Prototyped integrations between Dynamics 365 Commerce and AI-powered shopping experiences, indexing retail product data for a personalised shopping agent and importing Microsoft 365 content into retail catalogue experiences. • Worked in a two-person engineering team to build and demonstrate a Retail Data Manager connector within six weeks for an NRF industry event, working through data-ingestion issues with the relevant product teams ahead of the demonstration. • Contributed localisation, telemetry, customer lookup, routing and voice improvements, alongside code reviews, onboarding, documentation and project handover."
+      },
+      {
+        "company": "Microsoft",
+        "title": "Cloud Solution Architect",
         "years": "September 2020 - January 2022",
-        "description": "• Develops Infrastructure as code packages, as stretch projects, to accelerate the journey to proof of concept and exploration. Utilises project management tools such as GitHub Projects and Azure DevOps to collaborate with colleagues.• Evangelises and educates colleagues on data governance best practices across business areas and accelerating customer engagements as a UK Purview champ and subject matter expert.• Driving customer success as a trusted and strategic technical advisor, guiding customers on the architecture and adoption of modern data warehousing and data governance technologies.• Working closely with Microsoft engineering and research teams to share field experience with products and shape future developments acting as an intermediary in the customer feedback loop.• Analyses customer business requirements and problem statements to produce architecture on cloud based digital solutions and provide leadership through influence to bring value to customers."
+        "description": "Azure | Data, Analytics & AI. • Worked with customers to design Azure data and analytics solutions, focusing on data warehousing and Microsoft Purview; helped customers adopt Purview and shared feedback with product engineering teams. • Built PowerShell and Bicep tools, examples and hands-on labs to make Purview easier to deploy and learn. The PowerShell accelerator reached 304 unique clones and 92 recorded script executions within two weeks of release. • Created and delivered training on Azure Databricks, Git and CI/CD to around 80 Cloud Solution Architects, and helped run Power BI workshops attended by 23 people."
       },
       {
         "company": "LD Training",
@@ -76,6 +83,18 @@
     ],
     "skills": [
       {
+        "name": "TypeScript"
+      },
+      {
+        "name": "C#"
+      },
+      {
+        "name": "Azure"
+      },
+      {
+        "name": "APIs & SDKs"
+      },
+      {
         "name": "JavaScript",
         "level": "75%"
       },
@@ -84,11 +103,7 @@
         "level": "65%"
       },
       {
-        "name": "ReactJs",
-        "level": "50%"
-      },
-      {
-        "name": "Java",
+        "name": "React",
         "level": "50%"
       },
       {
@@ -103,30 +118,35 @@
         "title": "Resume Website",
         "category": "A React based resume website template.",
         "image": "website.png",
+        "imageWebp": "website.webp",
         "url": "https://github.com/JWStarkie/JWStarkie.github.io"
       },
       {
         "title": "Learn My C-AR",
         "category": "Final year augmented reality mobile applicatino with ML and AR.",
         "image": "learnmycar.png",
+        "imageWebp": "learnmycar.webp",
         "url": "https://github.com/JWStarkie/LearnMYCarApplication"
       },
       {
         "title": "Azure Purview Accelerator",
-        "category": "Infrastructure as code project to deploy a demo environment with Azure resources and sample data. PowerShell driven.",
+        "category": "PowerShell infrastructure-as-code accelerator for Microsoft Purview, with Azure resources and sample data. Reached 304 unique clones and 92 recorded script executions within two weeks of release.",
         "image": "powershell.png",
+        "imageWebp": "powershell.webp",
         "url": "https://github.com/JWStarkie/PurviewAccelerator"
       },
       {
         "title": "Excel to PDF VBA",
         "category": "Automating the creation of PDF files from rows in an Excel workbook.",
         "image": "excel.png",
+        "imageWebp": "excel.webp",
         "url": "https://github.com/JWStarkie/Excel-to-Word-VBA"
       },
       {
         "title": "Azure Purview Demo (Collaboration)",
         "category": "Infrastructure as code project to deploy a demo environment with Azure resources and sample data. Bicep driven.",
         "image": "bicep.png",
+        "imageWebp": "bicep.webp",
         "url": "https://github.com/JWStarkie/purviewdemo"
       }
     ]
