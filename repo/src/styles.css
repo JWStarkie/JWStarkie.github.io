@@ -228,13 +228,21 @@
   .footer-inner svg { width: .8rem; height: .8rem; }
   .back-top { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; }
 
-  .cv-page { padding-top: 2.5rem; }
+  .cv-page { min-height: 70vh; }
   .cv-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
-  .cv-toolbar h1 { font-size: 2.8rem; margin-top: .5rem; }
+  .cv-toolbar h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-top: .5rem; }
   .cv-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-  .cv-help { margin-block: 1.5rem; font-size: .85rem; color: var(--muted); }
-  .cv-help a { color: var(--accent); }
-  .pdf-preview { display: block; width: 100%; height: max(75vh, 500px); border: 0; background: #29262d; }
+  .cv-request { margin-top: 2rem; }
+  .cv-request > p { max-width: 42rem; color: var(--muted); }
+  .cv-request-form { display: grid; gap: .75rem; max-width: 42rem; margin-top: 2rem; }
+  .cv-request-form label { font-size: .85rem; font-weight: 600; }
+  .cv-request-form input, .cv-request-form textarea {
+    width: 100%; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: .5rem;
+    background: var(--surface); color: var(--text); font: inherit;
+  }
+  .cv-request-form textarea { resize: vertical; }
+  .cv-request-form button { justify-self: start; margin-top: .5rem; }
+  .cv-request-form [role="status"] { color: var(--muted); font-size: .85rem; }
 }
 
 @layer responsive {

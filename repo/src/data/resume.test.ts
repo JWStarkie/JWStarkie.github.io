@@ -23,6 +23,12 @@ describe('portfolio content', () => {
     expect(() => parseResumeData(data)).toThrow('incomplete or invalid')
   })
 
+  it('rejects an invalid contact email', () => {
+    const data = structuredClone(parseResumeData(source))
+    data.main.email = 'not-an-email'
+    expect(() => parseResumeData(data)).toThrow('incomplete or invalid')
+  })
+
   it('rejects an empty work history instead of crashing the hero', () => {
     const data = structuredClone(parseResumeData(source))
     data.resume.work = []

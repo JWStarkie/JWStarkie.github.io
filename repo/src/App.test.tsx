@@ -67,15 +67,28 @@ describe('portfolio', () => {
     expect(button).toHaveFocus()
   })
 
-  it('shows the CV with a real download and fallback without fetching profile data', async () => {
+  it('lets visitors request a CV without exposing a PDF link', async () => {
     window.location.hash = '#/cv'
-    const fetch = vi.fn()
-    vi.stubGlobal('fetch', fetch)
+    mockContent()
     render(<App />)
-    expect(await screen.findByTitle("Jo Starkie's CV")).toHaveAttribute('src', expect.stringContaining('.pdf'))
-    expect(screen.getByRole('link', { name: 'Download PDF' })).toHaveAttribute('download', 'Jo Starkie - CV 2026.pdf')
-    expect(screen.getByRole('link', { name: 'Open the PDF in a new tab' })).toBeInTheDocument()
-    expect(fetch).not.toHaveBeenCalled()
+    expect(await screen.findByRole('heading', { name: 'Request my CV.' })).toBeInTheDocument()
+    expect(screen.getByLabelText('Name')).toBeRequired()
+    expect(screen.getByLabelText('Email')).toHaveAttribute('type', 'email')
+    expect(screen.getByLabelText('Email')).toBeRequired()
+    expect(screen.getByLabelText('What would you like to use my CV for?')).toBeRequired()
+    expect(screen.queryByRole('link', { name: /download pdf|open the pdf/i })).not.toBeInTheDocument()
+
+    const open = vi.spyOn(window, 'open').mockImplementation(() => null)
+    await userEvent.type(screen.getByLabelText('Name'), 'Alex Example')
+    await userEvent.type(screen.getByLabelText('Email'), 'alex@example.com')
+    await userEvent.type(screen.getByLabelText('What would you like to use my CV for?'), 'A job application')
+    await userEvent.click(screen.getByRole('button', { name: 'Request a copy' }))
+    expect(open).toHaveBeenCalledWith(
+      expect.stringContaining('mailto:youremailhere@gmail.com?subject=CV%20request&body=Name%3A%20Alex%20Example'),
+      '_self',
+    )
+    expect(open.mock.calls[0][0]).toContain('A%20job%20application')
+    expect(await screen.findByRole('status')).toHaveTextContent('Send the message')
   })
 
   it('preserves legacy section bookmarks', async () => {
