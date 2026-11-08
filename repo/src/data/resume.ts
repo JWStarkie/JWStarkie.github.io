@@ -11,7 +11,6 @@ export interface Main {
   imageWebp?: string
   bio: string
   contactmessage: string
-  email: string
   github: string
   linkedin: string
   address: { city: string; state: string }
@@ -59,10 +58,6 @@ function hasStrings(value: unknown, keys: string[]): value is Record<string, unk
   return isRecord(value) && keys.every((key) => typeof value[key] === 'string' && value[key].trim())
 }
 
-function isEmailAddress(value: unknown): value is string {
-  return typeof value === 'string' && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-}
-
 function hasOptionalImage(value: Record<string, unknown>) {
   return value.imageWebp === undefined || typeof value.imageWebp === 'string'
 }
@@ -81,7 +76,6 @@ function isResumeData(value: unknown): value is ResumeData {
   const { main, resume, portfolio } = value
   return (
     hasStrings(main, ['title', 'name', 'description', 'image', 'bio', 'contactmessage']) &&
-    isEmailAddress(main.email) &&
     hasOptionalImage(main) &&
     isWebUrl(main.github) &&
     isWebUrl(main.linkedin) &&

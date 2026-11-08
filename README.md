@@ -16,7 +16,8 @@ npm start
 
 Open **http://localhost:3000**. React changes use Fast Refresh; changes to files
 under `public`, including `resumeData.json`, reload the page automatically.
-The CV is at **http://localhost:3000/#/cv**.
+The CV request form is at **http://localhost:3000/#/cv**. Set
+`VITE_CV_REQUEST_EMAIL` in `repo/.env.local` for local testing.
 
 ## Content
 
@@ -33,10 +34,11 @@ The CV is at **http://localhost:3000/#/cv**.
   `favicon.ico` contains 16, 32, 48 and 64-pixel versions; `public\icons` supplies
   the 180-pixel Apple touch icon and 192/512-pixel manifest icons. Keep these
   variants in sync when changing the mark.
-- The displayed CV is `repo\src\Jo Starkie - CV 2026.pdf`. Replace that file to
-  update the preview and download together. Its asset and page are loaded only
-  when the CV route is opened. `main.cvDownload` is retained as legacy metadata;
-  it does not control the embedded CV.
+- Set the GitHub Actions repository variable `VITE_CV_REQUEST_EMAIL` for Actions
+  builds, or set it in `repo/.env.local` for local builds and publishing. The
+  build injects it into the request form; it is not stored in `resumeData.json`
+  or source control. As this is a static site, the address is visible in the
+  built client and should not be treated as a secret.
 - Skills are displayed as tags, not subjective percentage bars. Existing
   `level` values remain in the data for backwards compatibility.
 
@@ -58,7 +60,7 @@ npm run preview
 
 The production build includes strict TypeScript checking. Tests cover real
 content validation, loading/error/retry states, section routing, the mobile menu
-and the CV preview/download. GitHub Actions runs lint, tests and a build on pull
+and CV requests. GitHub Actions runs lint, tests and a build on pull
 requests and pushes to `master`. Production preview runs at **http://localhost:4173**.
 
 ## Publishing

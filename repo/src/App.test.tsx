@@ -69,7 +69,9 @@ describe('portfolio', () => {
 
   it('lets visitors request a CV without exposing a PDF link', async () => {
     window.location.hash = '#/cv'
-    mockContent()
+    vi.stubEnv('VITE_CV_REQUEST_EMAIL', 'cv-requests@example.com')
+    const fetch = vi.fn()
+    vi.stubGlobal('fetch', fetch)
     render(<App />)
     expect(await screen.findByRole('heading', { name: 'Request my CV.' })).toBeInTheDocument()
     expect(screen.getByLabelText('Name')).toBeRequired()
@@ -84,11 +86,20 @@ describe('portfolio', () => {
     await userEvent.type(screen.getByLabelText('What would you like to use my CV for?'), 'A job application')
     await userEvent.click(screen.getByRole('button', { name: 'Request a copy' }))
     expect(open).toHaveBeenCalledWith(
-      expect.stringContaining('mailto:youremailhere@gmail.com?subject=CV%20request&body=Name%3A%20Alex%20Example'),
+      expect.stringContaining('mailto:cv-requests@example.com?subject=CV%20request&body=Name%3A%20Alex%20Example'),
       '_self',
     )
     expect(open.mock.calls[0][0]).toContain('A%20job%20application')
     expect(await screen.findByRole('status')).toHaveTextContent('Send the message')
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('explains when the CV request email has not been configured', async () => {
+    window.location.hash = '#/cv'
+    vi.stubEnv('VITE_CV_REQUEST_EMAIL', '')
+    render(<App />)
+    expect(await screen.findByRole('alert')).toHaveTextContent("hasn't been configured")
+    expect(screen.queryByRole('button', { name: 'Request a copy' })).not.toBeInTheDocument()
   })
 
   it('preserves legacy section bookmarks', async () => {

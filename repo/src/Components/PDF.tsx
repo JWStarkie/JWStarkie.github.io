@@ -1,36 +1,32 @@
 import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { useResumeData } from '../hooks/useResumeData'
 import { Icon } from './Icon'
 
 export default function CVPage() {
-  const { state, retry } = useResumeData()
+  const requestEmail = import.meta.env.VITE_CV_REQUEST_EMAIL
+  const validRequestEmail = typeof requestEmail === 'string' &&
+    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(requestEmail)
   const [submitted, setSubmitted] = useState(false)
 
   function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (state.status !== 'ready') return
+    if (!validRequestEmail) return
 
     const formData = new FormData(event.currentTarget)
     const subject = encodeURIComponent('CV request')
     const body = encodeURIComponent(
       `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\n\nDescription:\n${formData.get('description')}`,
     )
-    window.open(`mailto:${state.data.main.email}?subject=${subject}&body=${body}`, '_self')
+    window.open(`mailto:${requestEmail}?subject=${subject}&body=${body}`, '_self')
     setSubmitted(true)
   }
 
-  if (state.status === 'loading') {
-    return <main id="main-content" className="status-page"><p role="status">Loading the request form...</p></main>
-  }
-
-  if (state.status === 'error') {
+  if (!validRequestEmail) {
     return (
       <main id="main-content" className="status-page">
-        <p className="eyebrow">Something went wrong</p>
-        <h1>The request form couldn't load.</h1>
-        <p role="alert">{state.message}</p>
-        <button className="button button-primary" type="button" onClick={retry}>Try again</button>
+        <p className="eyebrow">Available on request</p>
+        <h1>CV requests are temporarily unavailable.</h1>
+        <p role="alert">The request form hasn't been configured yet. Please try again later.</p>
       </main>
     )
   }
