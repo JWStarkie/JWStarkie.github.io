@@ -6,7 +6,7 @@
     "image": "profilepic.jpg",
     "imageWebp": "profilepic.webp",
     "bio": "I'm a Software Engineer II at Microsoft working on Dynamics 365 Contact Center, with experience across TypeScript, C#, Azure, APIs and SDK development. Previously a Cloud Solution Architect, I bring both engineering and customer-facing experience to product development. I build customer-facing features and APIs, contribute to shared components, and investigate production issues using telemetry and debugging. I actively mentor early-career Cloud Solution Architects and aspiring Software Engineers, co-founded UnlockHerTech (shortlisted for the WIT Summit Awards 2023), and contribute to Women & Allies, Code Club, career mentoring and STEM outreach. My personality type is INFJ-T (if you're interested)!",
-    "contactmessage": "Feel free to reach out via any of my social medias below, I'll be more than happy to chat and help where I can. I'd love to hear from you.",
+    "contactmessage": "Feel free to reach out via any of my social links, I'll be more than happy to chat and help where I can. I'd love to hear from you.",
     "github": "https://github.com/JWStarkie",
     "linkedin": "https://www.linkedin.com/in/jostarkie",
     "address": {
@@ -38,7 +38,7 @@
     ]
   },
   "resume": {
-    "skillmessage": "My development experience spans C#, TypeScript, JavaScript, React, Node.js, SQL, PowerShell and Bicep. I work with Azure, Dynamics 365, Azure Data Factory, Azure Functions, AKS, Microsoft Fabric, Dataverse, Power Platform and Microsoft Purview. My engineering focus includes API and SDK development, automated testing, CI/CD, infrastructure as code, observability and event-driven systems, using Azure DevOps, Git, GitHub, TypeSpec/OpenAPI and VS Code. Selected skills are highlighted below; see my GitHub for examples of my work.",
+    "skillmessage": "My development experience spans C#, TypeScript, JavaScript, React, Node.js, SQL, PowerShell and Bicep. I work with Azure, Dynamics 365, Azure Data Factory, Azure Functions, AKS, Microsoft Fabric, Dataverse, Power Platform and Microsoft Purview. My engineering focus includes API and SDK development, automated testing, CI/CD, infrastructure as code, observability and event-driven systems, using Azure DevOps, Git, GitHub, TypeSpec/OpenAPI and VS Code. See my GitHub for examples of my work.",
     "education": [
       {
         "school": "Brunel University London",

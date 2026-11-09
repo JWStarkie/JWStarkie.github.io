@@ -29,6 +29,24 @@ describe('portfolio', () => {
     expect(screen.queryByRole('heading', { name: 'Meet Jo Starkie.' })).not.toBeInTheDocument()
   })
 
+  it('uses accessible social icons while preserving project and CV links', async () => {
+    mockContent()
+    render(<App />)
+    const hero = await screen.findByRole('region', { name: 'Meet Jo Starkie.' })
+    const contact = screen.getByRole('region', { name: "Let's connect." })
+    for (const [label, contactLabel] of [['LinkedIn', 'Find me on LinkedIn'], ['GitHub', 'See my GitHub']]) {
+      const heroLink = within(hero).getByRole('link', { name: `${label} (opens in a new tab)` })
+      const contactLink = within(contact).getByRole('link', { name: `${contactLabel} (opens in a new tab)` })
+      expect(heroLink).toHaveAttribute('href', contactLink.getAttribute('href'))
+      expect(heroLink).toHaveAttribute('target', '_blank')
+      expect(heroLink).toHaveAttribute('rel', 'noopener noreferrer')
+      expect(heroLink.textContent).toBe('')
+      expect(heroLink.querySelector('svg')).toHaveAttribute('aria-hidden', 'true')
+    }
+    expect(within(hero).getByRole('link', { name: 'Explore my work' })).toHaveAttribute('href', '#/#portfolio')
+    expect(within(hero).getByRole('link', { name: 'Request my CV' })).toHaveAttribute('href', '#/cv')
+  })
+
   it('displays certifications separately from education', async () => {
     mockContent()
     render(<App />)

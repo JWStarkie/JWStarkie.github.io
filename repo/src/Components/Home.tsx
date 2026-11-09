@@ -54,8 +54,8 @@ export function Home() {
                 <Link to="/cv" className="button button-outline">Request my CV</Link>
               </div>
               <div className="hero-socials">
-                <ExternalLink href={main.github} label="GitHub" />
-                <ExternalLink href={main.linkedin} label="LinkedIn" />
+                <ExternalLink href={main.github} label="GitHub" icon="github" />
+                <ExternalLink href={main.linkedin} label="LinkedIn" icon="linkedin" />
               </div>
             </div>
             <aside className="chapter-card" aria-label="Current role and location">
