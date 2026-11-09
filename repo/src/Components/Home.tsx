@@ -51,7 +51,7 @@ export function Home() {
               <p className="hero-description">{main.description.replace(/[.!]$/, '')}.</p>
               <div className="hero-actions">
                 <Link to="/#portfolio" className="button button-primary">Explore my work <Icon name="arrow" /></Link>
-                <Link to="/cv" className="button button-outline">View my CV</Link>
+                <Link to="/cv" className="button button-outline">Request my CV</Link>
               </div>
               <div className="hero-socials">
                 <ExternalLink href={main.github} label="GitHub" />
@@ -87,7 +87,7 @@ export function Home() {
               <p className="eyebrow">A bit about me</p>
               <h2 id="about-title">Technology is the craft.<br />People are the point<span>.</span></h2>
               <p>{main.bio}</p>
-              <Link to="/cv" className="text-link">Read my CV <Icon name="arrow" /></Link>
+              <Link to="/cv" className="text-link">Request my CV <Icon name="arrow" /></Link>
             </div>
           </div>
         </section>

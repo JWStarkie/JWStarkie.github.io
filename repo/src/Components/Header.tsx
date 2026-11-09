@@ -39,7 +39,7 @@ export function Header() {
           ))}
           <Link className="nav-cv" to="/cv" onClick={() => setOpen(false)}
             aria-current={location.pathname === '/cv' ? 'page' : undefined}>
-            View CV <Icon name="arrow" />
+            Request CV <Icon name="arrow" />
           </Link>
         </nav>
       </div>

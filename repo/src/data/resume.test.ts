@@ -10,7 +10,7 @@ describe('portfolio content', () => {
     const data = parseResumeData(source)
     expect(data.resume.work[0]).toMatchObject({ title: 'Software Engineer II', years: 'November 2023 - Present' })
     expect(data.resume.work[1]).toMatchObject({ title: 'Software Engineer', years: 'January 2022 - November 2023' })
-    expect(data.main.address.city).toBe('Bedford')
+    expect(data.main.address.city).toBe('Bedfordshire')
   })
 
   it.each([null, {}, { main: {} }, { main: [], resume: {}, portfolio: {} }])('rejects invalid data: %j', (value) => {
