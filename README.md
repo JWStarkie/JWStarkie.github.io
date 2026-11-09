@@ -37,7 +37,10 @@ npm run build
 ```
 
 `npm run preview` previews the build at <http://localhost:4173>.
-`npm run deploy` publishes to `gh-pages`; GitHub Pages should serve that branch's root.
+GitHub Actions checks every PR and deploys `repo\dist` after checks pass on `master`.
+Once this workflow is merged, set **Settings → Pages → Source** to **GitHub Actions**,
+then run **Portfolio checks and deployment** from the Actions tab for the first deployment.
+Keep the custom domain and HTTPS settings unchanged.
 
 ---
 
