@@ -36,17 +36,17 @@ export interface Project {
   category: string
   image: string
   imageWebp?: string
+  imageFit?: 'cover' | 'contain'
   url: string
 }
 
 export interface ResumeData {
   main: Main
   resume: {
-    skillmessage: string
     education: Education[]
     certifications: string[]
     work: Work[]
-    skills: { name: string; level?: string }[]
+    skills: string[]
   }
   portfolio: { projects: Project[] }
 }
@@ -55,8 +55,12 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0
+}
+
 function hasStrings(value: unknown, keys: string[]): value is Record<string, unknown> {
-  return isRecord(value) && keys.every((key) => typeof value[key] === 'string' && value[key].trim())
+  return isRecord(value) && keys.every((key) => isNonEmptyString(value[key]))
 }
 
 function hasOptionalImage(value: Record<string, unknown>) {
@@ -83,23 +87,22 @@ function isResumeData(value: unknown): value is ResumeData {
     hasStrings(main.address, ['city', 'state']) &&
     Array.isArray(main.social) &&
     main.social.every((item) => hasStrings(item, ['name']) && isWebUrl(item.url)) &&
-    hasStrings(resume, ['skillmessage']) &&
+    isRecord(resume) &&
     Array.isArray(resume.education) &&
     resume.education.every((item) => hasStrings(item, ['school', 'degree', 'graduated', 'description'])) &&
     Array.isArray(resume.certifications) &&
-    resume.certifications.every((item) => typeof item === 'string' && item.trim()) &&
+    resume.certifications.every(isNonEmptyString) &&
     Array.isArray(resume.work) &&
     resume.work.length > 0 &&
     resume.work.every((item) => hasStrings(item, ['company', 'title', 'years', 'description'])) &&
     Array.isArray(resume.skills) &&
-    resume.skills.every((item) =>
-      hasStrings(item, ['name']) && (item.level === undefined || typeof item.level === 'string'),
-    ) &&
+    resume.skills.every(isNonEmptyString) &&
     isRecord(portfolio) &&
     Array.isArray(portfolio.projects) &&
     portfolio.projects.every((item) =>
       hasStrings(item, ['title', 'category', 'image']) &&
       hasOptionalImage(item) &&
+      (item.imageFit === undefined || item.imageFit === 'cover' || item.imageFit === 'contain') &&
       isWebUrl(item.url),
     )
   )

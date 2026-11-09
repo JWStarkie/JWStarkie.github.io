@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from './Icon'
 
-const sections = [
+const navigationSections = [
   { label: 'About', id: 'about' },
   { label: 'Experience', id: 'resume' },
   { label: 'Projects', id: 'portfolio' },
@@ -11,8 +11,44 @@ const sections = [
 
 export function Header() {
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const menuButton = useRef<HTMLButtonElement>(null)
   const location = useLocation()
+
+  useEffect(() => {
+    if (location.pathname !== '/') return
+    let frame: number | undefined
+
+    function updateActiveSection() {
+      frame = undefined
+      const offset = (menuButton.current?.closest('header')?.getBoundingClientRect().height ?? 0) + 16
+      let active = ''
+      let lastSection: HTMLElement | null = null
+      for (const { id } of navigationSections) {
+        const section = document.getElementById(id)
+        if (!section) continue
+        lastSection = section
+        if (section.getBoundingClientRect().top <= offset) active = id
+      }
+      if (lastSection && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        active = lastSection.id
+      }
+      setActiveSection(active)
+    }
+
+    function scheduleUpdate() {
+      if (frame === undefined) frame = requestAnimationFrame(updateActiveSection)
+    }
+
+    scheduleUpdate()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      if (frame !== undefined) cancelAnimationFrame(frame)
+    }
+  }, [location.pathname])
 
   return (
     <header className="site-header" onKeyDown={(event) => {
@@ -31,9 +67,9 @@ export function Header() {
           <Icon name={open ? 'close' : 'menu'} />
         </button>
         <nav id="primary-navigation" aria-label="Main navigation" className={open ? 'navigation is-open' : 'navigation'}>
-          {sections.map(({ label, id }) => (
+          {navigationSections.map(({ label, id }) => (
             <Link key={id} to={`/#${id}`} onClick={() => setOpen(false)}
-              aria-current={location.pathname === '/' && location.hash === `#${id}` ? 'location' : undefined}>
+              aria-current={location.pathname === '/' && activeSection === id ? 'location' : undefined}>
               {label}
             </Link>
           ))}

@@ -14,9 +14,9 @@ npm ci
 npm start
 ```
 
-Open **http://localhost:3000**. React changes use Fast Refresh; changes to files
+Open **<http://localhost:3000>**. React changes use Fast Refresh; changes to files
 under `public`, including `resumeData.json`, reload the page automatically.
-The CV request form is at **http://localhost:3000/#/cv**. Set
+The CV request form is at **<http://localhost:3000/#/cv>**. Set
 `VITE_CV_REQUEST_EMAIL` in `repo/.env.local` for local testing.
 
 ## Content
@@ -30,6 +30,8 @@ The CV request form is at **http://localhost:3000/#/cv**. Set
 - Put images in `repo\public\images` (projects in `portfolio`). Optional
   `imageWebp` fields enable optimised WebP assets with the original as fallback.
   Supply a matching WebP when replacing an image, or remove that optional field.
+  Project images use an edge-to-edge crop by default; set `imageFit` to `contain`
+  for logos and graphics that should be shown in full.
 - `repo\public\favicon.svg` is the scalable JS monogram. The matching
   `favicon.ico` contains 16, 32, 48 and 64-pixel versions; `public\icons` supplies
   the 180-pixel Apple touch icon and 192/512-pixel manifest icons. Keep these
@@ -39,8 +41,6 @@ The CV request form is at **http://localhost:3000/#/cv**. Set
   build injects it into the request form; it is not stored in `resumeData.json`
   or source control. As this is a static site, the address is visible in the
   built client and should not be treated as a secret.
-- Skills are displayed as tags, not subjective percentage bars. Existing
-  `level` values remain in the data for backwards compatibility.
 
 The app loads no third-party scripts or analytics by default. Navigation,
 disclosures, layouts and hover effects use browser features and CSS, including
@@ -61,7 +61,7 @@ npm run preview
 The production build includes strict TypeScript checking. Tests cover real
 content validation, loading/error/retry states, section routing, the mobile menu
 and CV requests. GitHub Actions runs lint, tests and a build on pull
-requests and pushes to `master`. Production preview runs at **http://localhost:4173**.
+requests and pushes to `master`. Production preview runs at **<http://localhost:4173>**.
 
 ## Publishing
 

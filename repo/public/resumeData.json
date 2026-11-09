@@ -5,7 +5,7 @@
     "description": "I'm a Software Engineer II at Microsoft, building customer-facing features, APIs and SDKs for Dynamics 365 Contact Center",
     "image": "profilepic.jpg",
     "imageWebp": "profilepic.webp",
-    "bio": "I'm a Software Engineer II at Microsoft working on Dynamics 365 Contact Center, with experience across TypeScript, C#, Azure, APIs and SDK development. Previously a Cloud Solution Architect, I bring both engineering and customer-facing experience to product development. I build customer-facing features and APIs, contribute to shared components, and investigate production issues using telemetry and debugging. I actively mentor early-career Cloud Solution Architects and aspiring Software Engineers, co-founded UnlockHerTech (shortlisted for the WIT Summit Awards 2023), and contribute to Women & Allies, Code Club, career mentoring and STEM outreach. My personality type is INFJ-T (if you're interested)!",
+    "bio": "I'm a Software Engineer II at Microsoft working on Dynamics 365 Contact Center, with experience across TypeScript, C#, Azure, API and SDK development. Previously a Cloud Solution Architect, I bring both engineering and customer-facing experience to product development. I build customer-facing features and APIs, contribute to shared components, and investigate production issues using telemetry and debugging. I actively mentor early-career Cloud Solution Architects and aspiring Software Engineers, co-founded UnlockHerTech (shortlisted for the WIT Summit Awards 2023), and contribute to Women & Allies, Code Club, career mentoring and STEM outreach. My personality type is INFJ-T (if you're interested)!",
     "contactmessage": "Feel free to reach out via any of my social links, I'll be more than happy to chat and help where I can. I'd love to hear from you.",
     "github": "https://github.com/JWStarkie",
     "linkedin": "https://www.linkedin.com/in/jostarkie",
@@ -13,32 +13,26 @@
       "city": "Bedfordshire",
       "state": "United Kingdom"
     },
-    "website": "https://thestarkie.com",
     "social": [
       {
         "name": "twitter",
-        "url": "https://twitter.com/j0_c0des",
-        "className": "fa fa-twitter"
+        "url": "https://twitter.com/j0_c0des"
       },
       {
         "name": "linkedin",
-        "url": "https://linkedin.com/in/jostarkie",
-        "className": "fa fa-linkedin"
+        "url": "https://linkedin.com/in/jostarkie"
       },
       {
         "name": "github",
-        "url": "https://github.com/JWStarkie",
-        "className": "fa fa-github"
+        "url": "https://github.com/JWStarkie"
       },
       {
         "name": "carrd",
-        "url": "https://jostarkie.carrd.co/",
-        "className": "fa fa-briefcase"
+        "url": "https://jostarkie.carrd.co/"
       }
     ]
   },
   "resume": {
-    "skillmessage": "My development experience spans C#, TypeScript, JavaScript, React, Node.js, SQL, PowerShell and Bicep. I work with Azure, Dynamics 365, Azure Data Factory, Azure Functions, AKS, Microsoft Fabric, Dataverse, Power Platform and Microsoft Purview. My engineering focus includes API and SDK development, automated testing, CI/CD, infrastructure as code, observability and event-driven systems, using Azure DevOps, Git, GitHub, TypeSpec/OpenAPI and VS Code. See my GitHub for examples of my work.",
     "education": [
       {
         "school": "Brunel University London",
@@ -86,34 +80,36 @@
       }
     ],
     "skills": [
-      {
-        "name": "TypeScript"
-      },
-      {
-        "name": "C#"
-      },
-      {
-        "name": "Azure"
-      },
-      {
-        "name": "APIs & SDKs"
-      },
-      {
-        "name": "JavaScript",
-        "level": "75%"
-      },
-      {
-        "name": "PowerShell",
-        "level": "65%"
-      },
-      {
-        "name": "React",
-        "level": "50%"
-      },
-      {
-        "name": "Git",
-        "level": "65%"
-      }
+      "TypeScript",
+      "C#",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "SQL",
+      "PowerShell",
+      "ARM",
+      "Bicep",
+      "Azure",
+      "Dynamics 365",
+      "Azure Data Factory",
+      "Azure Functions",
+      "AKS",
+      "Microsoft Fabric",
+      "Dataverse",
+      "Power Platform",
+      "Microsoft Purview",
+      "APIs Development",
+      "SDK Development",
+      "Automated testing",
+      "CI/CD",
+      "Infrastructure as code",
+      "Observability",
+      "Event-driven systems",
+      "Azure DevOps",
+      "Git",
+      "GitHub",
+      "TypeSpec/OpenAPI",
+      "VS Code"
     ]
   },
   "portfolio": {
@@ -122,7 +118,6 @@
         "title": "Resume Website",
         "category": "A responsive portfolio built with React, TypeScript and Vite, showcasing my experience, certifications and projects. Features accessible navigation, mobile layouts, a CV request form and editable JSON content, with automated tests and GitHub Actions checks supporting deployment to GitHub Pages.",
         "image": "website.png",
-        "imageWebp": "website.webp",
         "url": "https://github.com/JWStarkie/JWStarkie.github.io"
       },
       {
@@ -137,6 +132,7 @@
         "category": "A PowerShell accelerator for Microsoft Purview proof-of-concept and demo environments. Provisions Azure storage, Synapse, Data Factory and Key Vault, loads sample data and automates supporting permissions so users can focus on exploring data governance and lineage. Reached 304 unique clones and 92 recorded script executions within two weeks of release.",
         "image": "powershell.png",
         "imageWebp": "powershell.webp",
+        "imageFit": "contain",
         "url": "https://github.com/JWStarkie/PurviewAccelerator"
       },
       {
@@ -144,6 +140,7 @@
         "category": "VBA automation that turns rows of Excel data into individual Word reports using a reusable document template. Populates bookmarks with calculated results, comments and explanations, applies conditional formatting and consolidates source data for analysis, reducing repetitive document preparation.",
         "image": "excel.png",
         "imageWebp": "excel.webp",
+        "imageFit": "contain",
         "url": "https://github.com/JWStarkie/Excel-to-Word-VBA"
       },
       {
@@ -151,6 +148,7 @@
         "category": "A collaborative, Bicep-driven project for deploying a pre-populated Microsoft Purview demo environment. Automates Azure resource provisioning, role assignments, sample-data loading, source registration and scans, with a populated glossary and Data Factory lineage to support practical data-governance demonstrations.",
         "image": "bicep.png",
         "imageWebp": "bicep.webp",
+        "imageFit": "contain",
         "url": "https://github.com/JWStarkie/purviewdemo"
       }
     ]

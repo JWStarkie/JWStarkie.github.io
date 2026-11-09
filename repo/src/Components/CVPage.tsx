@@ -10,7 +10,6 @@ export default function CVPage() {
 
   function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!validRequestEmail) return
 
     const formData = new FormData(event.currentTarget)
     const subject = encodeURIComponent('CV request')
@@ -38,18 +37,16 @@ export default function CVPage() {
           <p className="eyebrow">Available on request</p>
           <h1>Request my CV<span>.</span></h1>
         </div>
-        <div className="cv-actions">
-          <Link className="text-link" to="/#resume"><Icon name="back" />Back to experience</Link>
-        </div>
+        <Link className="text-link" to="/#resume"><Icon name="back" />Back to portfolio</Link>
       </div>
       <div className="container cv-request">
         <p>Share a few details and your email app will open with a request ready to send. Your details are not submitted or stored by this website.</p>
         <form className="cv-request-form" onSubmit={submitRequest}>
-          <label htmlFor="cv-request-name">Name</label>
+          <label htmlFor="cv-request-name">Name <span className="required-marker" aria-hidden="true">*</span></label>
           <input id="cv-request-name" name="name" autoComplete="name" required />
-          <label htmlFor="cv-request-email">Email</label>
+          <label htmlFor="cv-request-email">Email <span className="required-marker" aria-hidden="true">*</span></label>
           <input id="cv-request-email" name="email" type="email" autoComplete="email" required />
-          <label htmlFor="cv-request-description">What would you like to use my CV for?</label>
+          <label htmlFor="cv-request-description">What would you like to use my CV for? <span className="required-marker" aria-hidden="true">*</span></label>
           <textarea id="cv-request-description" name="description" rows={5} required />
           <button className="button button-primary" type="submit">Request a copy <Icon name="arrow" /></button>
           {submitted && <p role="status">Your email app should be open with the request. Send the message to complete your request.</p>}

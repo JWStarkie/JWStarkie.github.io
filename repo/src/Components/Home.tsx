@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { publicAsset, socialLabel } from '../data/resume'
+import { socialLabel } from '../data/resume'
 import { useResumeData } from '../hooks/useResumeData'
 import { ExternalLink } from './ExternalLink'
 import { Icon } from './Icon'
 import { Portfolio } from './Portfolio'
 import { Resume } from './Resume'
+import { ResponsiveImage } from './ResponsiveImage'
 
 export function Home() {
   const { state, retry } = useResumeData()
@@ -76,11 +77,9 @@ export function Home() {
         <section id="about" className="section about-section" aria-labelledby="about-title">
           <div className="container about-layout">
             <div className="portrait-wrap">
-              <picture>
-                {main.imageWebp && <source type="image/webp" srcSet={publicAsset(`images/${main.imageWebp}`)} />}
-                <img className="portrait" src={publicAsset(`images/${main.image}`)} alt={main.name}
-                  width="512" height="512" loading="lazy" decoding="async" />
-              </picture>
+              <ResponsiveImage className="portrait" src={`images/${main.image}`}
+                webpSrc={main.imageWebp ? `images/${main.imageWebp}` : undefined}
+                alt={main.name} width={512} height={512} />
               <span className="portrait-caption">Engineer. Mentor. Curious human.</span>
             </div>
             <div className="about-copy">
