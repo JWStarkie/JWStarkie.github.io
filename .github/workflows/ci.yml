@@ -1,16 +1,17 @@
-name: Portfolio checks
+name: Portfolio checks and deployment
 
 on:
   push:
     branches: [master]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
   group: portfolio-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   check:
@@ -32,3 +33,27 @@ jobs:
       - run: npm run build
         env:
           VITE_CV_REQUEST_EMAIL: ${{ vars.VITE_CV_REQUEST_EMAIL }}
+      - name: Upload website
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: repo/dist
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
