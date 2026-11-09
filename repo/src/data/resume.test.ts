@@ -23,6 +23,17 @@ describe('portfolio content', () => {
     expect(() => parseResumeData(data)).toThrow('incomplete or invalid')
   })
 
+  it.each([undefined, null, 'GitHub Foundations', [''], ['  '], [123]])(
+    'rejects invalid certifications: %j',
+    (certifications) => {
+      const data = parseResumeData(source)
+      expect(() => parseResumeData({
+        ...data,
+        resume: { ...data.resume, certifications },
+      })).toThrow('incomplete or invalid')
+    },
+  )
+
   it('rejects an empty work history instead of crashing the hero', () => {
     const data = structuredClone(parseResumeData(source))
     data.resume.work = []

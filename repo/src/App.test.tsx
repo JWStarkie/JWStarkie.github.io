@@ -29,6 +29,23 @@ describe('portfolio', () => {
     expect(screen.queryByRole('heading', { name: 'Meet Jo Starkie.' })).not.toBeInTheDocument()
   })
 
+  it('displays certifications separately from education', async () => {
+    mockContent()
+    render(<App />)
+    const education = await screen.findByRole('region', { name: 'Education' })
+    expect(within(education).getByText('Brunel University London')).toBeInTheDocument()
+    expect(education).toHaveTextContent('First Class Honours')
+    expect(education).not.toHaveTextContent('Certifications earned')
+    const certifications = screen.getByRole('region', { name: 'Certifications' })
+    expect(within(certifications).getAllByRole('listitem').map((item) => item.textContent)).toEqual([
+      'Power BI Data Analyst Associate (DA-100)',
+      'Azure Data Fundamentals (DP-900)',
+      'Azure AI Fundamentals (AI-900)',
+      'GitHub Foundations',
+    ])
+    expect(education).not.toHaveTextContent('GitHub Foundations')
+  })
+
   it('surfaces HTTP failures and allows a successful retry', async () => {
     const fetch = vi.fn()
       .mockResolvedValueOnce(new Response('', { status: 503 }))

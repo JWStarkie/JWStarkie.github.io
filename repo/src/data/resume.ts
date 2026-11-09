@@ -44,6 +44,7 @@ export interface ResumeData {
   resume: {
     skillmessage: string
     education: Education[]
+    certifications: string[]
     work: Work[]
     skills: { name: string; level?: string }[]
   }
@@ -85,6 +86,8 @@ function isResumeData(value: unknown): value is ResumeData {
     hasStrings(resume, ['skillmessage']) &&
     Array.isArray(resume.education) &&
     resume.education.every((item) => hasStrings(item, ['school', 'degree', 'graduated', 'description'])) &&
+    Array.isArray(resume.certifications) &&
+    resume.certifications.every((item) => typeof item === 'string' && item.trim()) &&
     Array.isArray(resume.work) &&
     resume.work.length > 0 &&
     resume.work.every((item) => hasStrings(item, ['company', 'title', 'years', 'description'])) &&

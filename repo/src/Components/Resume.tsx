@@ -9,10 +9,10 @@ export function Resume({ data }: { data: ResumeData['resume'] }) {
         <div className="section-heading">
           <p className="eyebrow">The journey so far</p>
           <h2 id="experience-title">Experience, with impact<span>.</span></h2>
-          <p>From cloud architecture to the details that make a product work.</p>
+          <p>From cloud architecture and engineering to the details that make a product work.</p>
         </div>
         <div className="resume-layout">
-          <aside className="resume-sidebar" aria-label="Skills and education">
+          <aside className="resume-sidebar" aria-label="Skills, education and certifications">
             <div className="skills-panel">
               <h3>Tools of the trade</h3>
               <p>{data.skillmessage}</p>
@@ -20,17 +20,25 @@ export function Resume({ data }: { data: ResumeData['resume'] }) {
                 {data.skills.map((skill) => <li key={skill.name}>{skill.name}</li>)}
               </ul>
             </div>
-            <div className="education-panel">
+            <section className="education-panel" aria-labelledby="education-title">
               <p className="eyebrow">Always learning</p>
-              <h3>Education & certifications</h3>
+              <h3 id="education-title">Education</h3>
               {data.education.map((education) => (
                 <div key={`${education.school}-${education.degree}`}>
                   <p className="education-degree">{education.degree}</p>
-                  <p className="education-school">{education.school} <span>/ {education.graduated}</span></p>
+                  <p className="education-school">{education.school} <span>{education.graduated} alum</span></p>
                   <p>{education.description}</p>
                 </div>
               ))}
-            </div>
+            </section>
+            {data.certifications.length > 0 && (
+              <section className="certifications-panel" aria-labelledby="certifications-title">
+                <h3 id="certifications-title">Certifications</h3>
+                <ul className="certification-list">
+                  {data.certifications.map((certification) => <li key={certification}>{certification}</li>)}
+                </ul>
+              </section>
+            )}
           </aside>
           <div className="experience-list">
             {data.work.map((work, index) => {
