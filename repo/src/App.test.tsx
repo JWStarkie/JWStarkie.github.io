@@ -190,9 +190,9 @@ describe('portfolio', () => {
     expect(screen.queryByRole('link', { name: /download pdf|open the pdf/i })).not.toBeInTheDocument()
 
     const open = vi.spyOn(window, 'open').mockImplementation(() => null)
-    await userEvent.type(nameInput, 'Alex & Example')
+    await userEvent.type(nameInput, '  Alex & Example  ')
     await userEvent.type(emailInput, 'alex+jobs@example.com')
-    await userEvent.type(descriptionInput, 'A job application & SDK work?')
+    await userEvent.type(descriptionInput, '  A job application & SDK work?  ')
     await userEvent.click(screen.getByRole('button', { name: 'Request a copy' }))
     expect(open).toHaveBeenCalledTimes(1)
     const [url, target] = open.mock.calls[0]
@@ -205,6 +205,32 @@ describe('portfolio', () => {
       .toBe('Name: Alex & Example\nEmail: alex+jobs@example.com\n\nDescription:\nA job application & SDK work?')
     expect(await screen.findByRole('status')).toHaveTextContent('Send the message')
     expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it.each(['Name', 'What would you like to use my CV for?'])('rejects whitespace-only %s and allows correction', async (label) => {
+    window.location.hash = '#/cv'
+    vi.stubEnv('VITE_CV_REQUEST_EMAIL', 'cv-requests@example.com')
+    render(<App />)
+    await screen.findByRole('heading', { name: 'Request my CV.' })
+    const open = vi.spyOn(window, 'open').mockImplementation(() => null)
+    for (const [name, value] of [
+      ['Name', 'Alex'],
+      ['Email', 'alex@example.com'],
+      ['What would you like to use my CV for?', 'A job application'],
+    ]) {
+      fireEvent.change(screen.getByRole('textbox', { name }), { target: { value } })
+    }
+    const input = screen.getByRole('textbox', { name: label })
+    fireEvent.change(input, { target: { value: ' \t ' } })
+    await userEvent.click(screen.getByRole('button', { name: 'Request a copy' }))
+    expect(input).toHaveValue('')
+    expect(input).toBeInvalid()
+    expect(open).not.toHaveBeenCalled()
+    expect(screen.queryByRole('status')).not.toBeInTheDocument()
+
+    await userEvent.type(input, 'Corrected details')
+    await userEvent.click(screen.getByRole('button', { name: 'Request a copy' }))
+    expect(open).toHaveBeenCalledTimes(1)
   })
 
   it.each([undefined, '', 'not-an-email'])('explains unavailable CV requests for email %j', async (email) => {

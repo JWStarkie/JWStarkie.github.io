@@ -11,7 +11,13 @@ export default function CVPage() {
   function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    const formData = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    for (const field of form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea')) {
+      field.value = field.value.trim()
+    }
+    if (!form.reportValidity()) return
+
+    const formData = new FormData(form)
     const subject = encodeURIComponent('CV request')
     const body = encodeURIComponent(
       `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\n\nDescription:\n${formData.get('description')}`,
