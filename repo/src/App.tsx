@@ -1,9 +1,9 @@
 import { lazy, Suspense, useEffect } from 'react'
-import { HashRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { HashRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { Header } from './Components/Header'
 import { Home } from './Components/Home'
 
-const CVPage = lazy(() => import('./Components/PDF'))
+const CVPage = lazy(() => import('./Components/CVPage'))
 
 function RouteFocus() {
   const { pathname } = useLocation()
@@ -29,9 +29,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cv" element={<CVPage />} />
-          {['home', 'about', 'resume', 'portfolio', 'contact'].map((section) => (
-            <Route key={section} path={`/${section}`} element={<Navigate to={`/#${section}`} replace />} />
-          ))}
           <Route path="*" element={
             <main id="main-content" className="status-page">
               <p className="eyebrow">404</p>

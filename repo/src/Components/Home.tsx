@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { publicAsset, socialLabel } from '../data/resume'
+import { socialLabel } from '../data/resume'
 import { useResumeData } from '../hooks/useResumeData'
 import { ExternalLink } from './ExternalLink'
 import { Icon } from './Icon'
 import { Portfolio } from './Portfolio'
 import { Resume } from './Resume'
+import { ResponsiveImage } from './ResponsiveImage'
 
 export function Home() {
   const { state, retry } = useResumeData()
@@ -51,11 +52,11 @@ export function Home() {
               <p className="hero-description">{main.description.replace(/[.!]$/, '')}.</p>
               <div className="hero-actions">
                 <Link to="/#portfolio" className="button button-primary">Explore my work <Icon name="arrow" /></Link>
-                <Link to="/cv" className="button button-outline">View my CV</Link>
+                <Link to="/cv" className="button button-outline">Request my CV</Link>
               </div>
               <div className="hero-socials">
-                <ExternalLink href={main.github} label="GitHub" />
-                <ExternalLink href={main.linkedin} label="LinkedIn" />
+                <ExternalLink href={main.github} label="GitHub" icon="github" />
+                <ExternalLink href={main.linkedin} label="LinkedIn" icon="linkedin" />
               </div>
             </div>
             <aside className="chapter-card" aria-label="Current role and location">
@@ -76,18 +77,16 @@ export function Home() {
         <section id="about" className="section about-section" aria-labelledby="about-title">
           <div className="container about-layout">
             <div className="portrait-wrap">
-              <picture>
-                {main.imageWebp && <source type="image/webp" srcSet={publicAsset(`images/${main.imageWebp}`)} />}
-                <img className="portrait" src={publicAsset(`images/${main.image}`)} alt={main.name}
-                  width="512" height="512" loading="lazy" decoding="async" />
-              </picture>
+              <ResponsiveImage className="portrait" src={`images/${main.image}`}
+                webpSrc={main.imageWebp ? `images/${main.imageWebp}` : undefined}
+                alt={main.name} width={512} height={512} />
               <span className="portrait-caption">Engineer. Mentor. Curious human.</span>
             </div>
             <div className="about-copy">
               <p className="eyebrow">A bit about me</p>
               <h2 id="about-title">Technology is the craft.<br />People are the point<span>.</span></h2>
               <p>{main.bio}</p>
-              <Link to="/cv" className="text-link">Read my CV <Icon name="arrow" /></Link>
+              <Link to="/cv" className="text-link">Request my CV <Icon name="arrow" /></Link>
             </div>
           </div>
         </section>
@@ -111,7 +110,7 @@ export function Home() {
       </main>
       <footer className="site-footer">
         <div className="container footer-inner">
-          <p>&copy; {new Date().getFullYear()} {main.name}. Built with care.</p>
+          <p>&copy; {new Date().getFullYear()} {main.name}. Built with 💖 & ☕.</p>
           <nav aria-label="Social links">
             {main.social.map((social) => <ExternalLink key={social.name} href={social.url} label={socialLabel(social.name)} />)}
           </nav>

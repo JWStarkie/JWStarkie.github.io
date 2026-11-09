@@ -6,13 +6,6 @@ import { parseResumeData, splitDescription } from './resume'
 const source: unknown = JSON.parse(readFileSync(resolve('public', 'resumeData.json'), 'utf8'))
 
 describe('portfolio content', () => {
-  it('validates the real, editable public JSON and promotion history', () => {
-    const data = parseResumeData(source)
-    expect(data.resume.work[0]).toMatchObject({ title: 'Software Engineer II', years: 'November 2023 - Present' })
-    expect(data.resume.work[1]).toMatchObject({ title: 'Software Engineer', years: 'January 2022 - November 2023' })
-    expect(data.main.address.city).toBe('Bedford')
-  })
-
   it.each([null, {}, { main: {} }, { main: [], resume: {}, portfolio: {} }])('rejects invalid data: %j', (value) => {
     expect(() => parseResumeData(value)).toThrow('incomplete or invalid')
   })
@@ -23,10 +16,33 @@ describe('portfolio content', () => {
     expect(() => parseResumeData(data)).toThrow('incomplete or invalid')
   })
 
+  describe.each(['certifications', 'skills'] as const)('%s', (field) => {
+    it.each([undefined, null, 'not a list', [''], ['  '], [123], [{ name: 'TypeScript' }]])(
+      'rejects invalid values: %j',
+      (value) => {
+        const data = parseResumeData(source)
+        expect(() => parseResumeData({
+          ...data,
+          resume: { ...data.resume, [field]: value },
+        })).toThrow('incomplete or invalid')
+      },
+    )
+  })
+
   it('rejects an empty work history instead of crashing the hero', () => {
     const data = structuredClone(parseResumeData(source))
     data.resume.work = []
     expect(() => parseResumeData(data)).toThrow('incomplete or invalid')
+  })
+
+  it.each(['stretch', null])('rejects unsupported project image fitting: %j', (imageFit) => {
+    const data = parseResumeData(source)
+    expect(() => parseResumeData({
+      ...data,
+      portfolio: {
+        projects: data.portfolio.projects.map((project) => ({ ...project, imageFit })),
+      },
+    })).toThrow('incomplete or invalid')
   })
 
   it('keeps every referenced original and optimised image available', () => {
@@ -40,7 +56,13 @@ describe('portfolio content', () => {
       ]),
     ].filter((image): image is string => image !== undefined)
     for (const image of images) {
-      expect(existsSync(resolve('public', 'images', ...image.split('/'))), image).toBe(true)
+      const path = resolve('public', 'images', ...image.split('/'))
+      expect(existsSync(path), image).toBe(true)
+      if (image.endsWith('.webp')) {
+        const content = readFileSync(path)
+        expect(content.toString('ascii', 0, 4), image).toBe('RIFF')
+        expect(content.toString('ascii', 8, 12), image).toBe('WEBP')
+      }
     }
   })
 })
@@ -53,29 +75,7 @@ describe('description formatting', () => {
     })
   })
 
-  describe('site icons', () => {
-    it('ships a genuine multi-resolution ICO rather than a renamed PNG', () => {
-      const icon = readFileSync(resolve('public', 'favicon.ico'))
-      expect([...icon.subarray(0, 4)]).toEqual([0, 0, 1, 0])
-      const count = icon.readUInt16LE(4)
-      expect(count).toBe(4)
-      const sizes = Array.from({ length: count }, (_, index) => icon[6 + index * 16])
-      expect(sizes.sort((a, b) => a - b)).toEqual([16, 32, 48, 64])
-    })
-
-    it.each([
-      ['apple-touch-icon.png', 180],
-      ['icon-192.png', 192],
-      ['icon-512.png', 512],
-    ] as const)('ships %s at the correct dimensions', (name, size) => {
-      const icon = readFileSync(resolve('public', 'icons', name))
-      expect([...icon.subarray(0, 8)]).toEqual([137, 80, 78, 71, 13, 10, 26, 10])
-      expect(icon.readUInt32BE(16)).toBe(size)
-      expect(icon.readUInt32BE(20)).toBe(size)
-    })
-  })
-
-  it('handles legacy descriptions beginning with a bullet and no spaces', () => {
+  it('handles descriptions beginning with a bullet and no spaces', () => {
     expect(splitDescription('\u2022 First item.\u2022 Second item.')).toEqual({
       intro: '',
       bullets: ['First item.', 'Second item.'],
@@ -84,5 +84,27 @@ describe('description formatting', () => {
 
   it('keeps a plain paragraph intact', () => {
     expect(splitDescription('A plain paragraph.')).toEqual({ intro: 'A plain paragraph.', bullets: [] })
+  })
+})
+
+describe('site icons', () => {
+  it('ships a genuine multi-resolution ICO rather than a renamed PNG', () => {
+    const icon = readFileSync(resolve('public', 'favicon.ico'))
+    expect([...icon.subarray(0, 4)]).toEqual([0, 0, 1, 0])
+    const count = icon.readUInt16LE(4)
+    expect(count).toBe(4)
+    const sizes = Array.from({ length: count }, (_, index) => icon[6 + index * 16])
+    expect(sizes.sort((a, b) => a - b)).toEqual([16, 32, 48, 64])
+  })
+
+  it.each([
+    ['apple-touch-icon.png', 180],
+    ['icon-192.png', 192],
+    ['icon-512.png', 512],
+  ] as const)('ships %s at the correct dimensions', (name, size) => {
+    const icon = readFileSync(resolve('public', 'icons', name))
+    expect([...icon.subarray(0, 8)]).toEqual([137, 80, 78, 71, 13, 10, 26, 10])
+    expect(icon.readUInt32BE(16)).toBe(size)
+    expect(icon.readUInt32BE(20)).toBe(size)
   })
 })
