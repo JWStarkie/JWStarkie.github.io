@@ -111,7 +111,7 @@ export function Home() {
       </main>
       <footer className="site-footer">
         <div className="container footer-inner">
-          <p>&copy; {new Date().getFullYear()} {main.name}. Built with care.</p>
+          <p>&copy; {new Date().getFullYear()} {main.name}. Built with 💖 & ☕.</p>
           <nav aria-label="Social links">
             {main.social.map((social) => <ExternalLink key={social.name} href={social.url} label={socialLabel(social.name)} />)}
           </nav>
