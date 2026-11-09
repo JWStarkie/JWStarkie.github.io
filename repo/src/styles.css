@@ -198,7 +198,7 @@
   .experience-content li + li { margin-top: .85rem; }
   .experience-toggle {
     display: none; min-height: 44px; margin-top: .75rem; padding: 0; border: 0; background: none;
-    color: var(--accent); font: inherit; font-weight: 600; cursor: pointer;
+    color: var(--accent-ink); font: inherit; font-weight: 600; cursor: pointer;
   }
   .experience-toggle:hover { text-decoration: underline; }
   .experience-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
