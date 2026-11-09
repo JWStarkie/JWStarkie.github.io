@@ -120,35 +120,35 @@
     "projects": [
       {
         "title": "Resume Website",
-        "category": "A React based resume website template.",
+        "category": "A responsive portfolio built with React, TypeScript and Vite, showcasing my experience, certifications and projects. Features accessible navigation, mobile layouts, a CV request form and editable JSON content, with automated tests and GitHub Actions checks supporting deployment to GitHub Pages.",
         "image": "website.png",
         "imageWebp": "website.webp",
         "url": "https://github.com/JWStarkie/JWStarkie.github.io"
       },
       {
         "title": "Learn My C-AR",
-        "category": "Final year augmented reality mobile applicatino with ML and AR.",
+        "category": "My final-year mobile application, built with React Native and ViroReact, combining machine-learning vehicle identification with augmented-reality experiences. Uses image-based make and model recognition alongside interactive AR content to explore a more engaging way to learn about cars.",
         "image": "learnmycar.png",
         "imageWebp": "learnmycar.webp",
         "url": "https://github.com/JWStarkie/LearnMYCarApplication"
       },
       {
         "title": "Azure Purview Accelerator",
-        "category": "PowerShell infrastructure-as-code accelerator for Microsoft Purview, with Azure resources and sample data. Reached 304 unique clones and 92 recorded script executions within two weeks of release.",
+        "category": "A PowerShell accelerator for Microsoft Purview proof-of-concept and demo environments. Provisions Azure storage, Synapse, Data Factory and Key Vault, loads sample data and automates supporting permissions so users can focus on exploring data governance and lineage. Reached 304 unique clones and 92 recorded script executions within two weeks of release.",
         "image": "powershell.png",
         "imageWebp": "powershell.webp",
         "url": "https://github.com/JWStarkie/PurviewAccelerator"
       },
       {
         "title": "Excel to PDF VBA",
-        "category": "Automating the creation of PDF files from rows in an Excel workbook.",
+        "category": "VBA automation that turns rows of Excel data into individual Word reports using a reusable document template. Populates bookmarks with calculated results, comments and explanations, applies conditional formatting and consolidates source data for analysis, reducing repetitive document preparation.",
         "image": "excel.png",
         "imageWebp": "excel.webp",
         "url": "https://github.com/JWStarkie/Excel-to-Word-VBA"
       },
       {
         "title": "Azure Purview Demo (Collaboration)",
-        "category": "Infrastructure as code project to deploy a demo environment with Azure resources and sample data. Bicep driven.",
+        "category": "A collaborative, Bicep-driven project for deploying a pre-populated Microsoft Purview demo environment. Automates Azure resource provisioning, role assignments, sample-data loading, source registration and scans, with a populated glossary and Data Factory lineage to support practical data-governance demonstrations.",
         "image": "bicep.png",
         "imageWebp": "bicep.webp",
         "url": "https://github.com/JWStarkie/purviewdemo"
